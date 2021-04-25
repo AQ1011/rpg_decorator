@@ -177,4 +177,80 @@ namespace rpg_decorator
 
     }
 
+    public class Nekomancer : ICharacter
+    {
+
+        private ICharacter character;
+        string imgname;
+
+        public Nekomancer(ICharacter chara)
+        {
+            this.character = chara;
+            imgname = "Nekomancer.png";
+        }
+
+        public string getImageName()
+        {
+            return imgname;
+        }
+
+        public virtual string getName()
+        {
+            return this.character.getName();
+        }
+
+        public virtual string getSpecial1()
+        {
+            return "Staff";
+        }
+
+        public virtual string getSpecial2()
+        {
+            return "Staff";
+        }
+
+        public virtual string getStyle()
+        {
+            return "Special";
+        }
+    }
+
+    public class Masquerade : ICharacter
+    {
+
+        private ICharacter character;
+        string imgname;
+
+        public Masquerade(ICharacter chara)
+        {
+            this.character = chara;
+            imgname = "Masquerade.png";
+        }
+
+        public string getImageName()
+        {
+            return imgname;
+        }
+
+        public virtual string getName()
+        {
+            return this.character.getName();
+        }
+
+        public virtual string getSpecial1()
+        {
+            return "Dagger";
+        }
+
+        public virtual string getSpecial2()
+        {
+            return "Dagger";
+        }
+
+        public virtual string getStyle()
+        {
+            return "Attack";
+        }
+    }
+
 }

@@ -20,7 +20,7 @@ namespace rpg_decorator
         {
             InitializeComponent();
             myCharacter = new Male();
-            string[] characterClass = { "Alchemist", "Gunslinger", "Mechanic"};
+            string[] characterClass = { "Alchemist", "Gunslinger", "Mechanic", "Nekomancer", "Marquerade"};
 
             path = "../../";
 
@@ -60,6 +60,30 @@ namespace rpg_decorator
             pb_style.Image = new Bitmap(path + "style/" + chara.getStyle() + ".png");
         }
 
+
+        private void setNekomancer()
+        {
+            Nekomancer chara = new Nekomancer(myCharacter);
+            string imgPath = path + "characters/" + myCharacter.getName() + "/" + chara.getImageName();
+            pictureBox1.Image = new Bitmap(imgPath);
+            pb_spec1.Image = new Bitmap(path + "special/" + chara.getSpecial1() + ".png");
+            pb_spec2.Image = new Bitmap(path + "special/" + chara.getSpecial2() + ".png");
+            pb_style.Image = new Bitmap(path + "style/" + chara.getStyle() + ".png");
+        }
+
+        private void setMarquerade()
+        {
+            Masquerade chara = new Masquerade(myCharacter);
+            string imgPath = path + "characters/" + myCharacter.getName() + "/" + chara.getImageName();
+            pictureBox1.Image = new Bitmap(imgPath);
+            pb_spec1.Image = new Bitmap(path + "special/" + chara.getSpecial1() + ".png");
+            pb_spec2.Image = new Bitmap(path + "special/" + chara.getSpecial2() + ".png");
+            pb_style.Image = new Bitmap(path + "style/" + chara.getStyle() + ".png");
+        }
+
+        public void setImage() { 
+        }
+
         private void setClass()
         {
             switch (comboBox1.SelectedItem.ToString())
@@ -72,6 +96,12 @@ namespace rpg_decorator
                     break;
                 case "Mechanic":
                     setMechanic();
+                    break;
+                case "Nekomancer":
+                    setNekomancer();
+                    break;
+                case "Marquerade":
+                    setMarquerade();
                     break;
             }
         }
