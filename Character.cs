@@ -9,13 +9,18 @@ namespace rpg_decorator
     public interface ICharacter
     {
         string getName();
-        string getStyle();
         string getSpecial1();
         string getSpecial2();
     }
 
-    class Male : ICharacter
+    public class Male : ICharacter
     {
+        
+        private int health { get; set; }
+        private int attack { get; set; }
+        private int defence { get; set; }
+        private int luck { get; set; }
+
         public string getName()
         {
             return "Male";
@@ -30,14 +35,9 @@ namespace rpg_decorator
         {
             return "Meele";
         }
-
-        public string getStyle()
-        {
-            return "No style";
-        }
     }
 
-    class Female : ICharacter
+    public class Female : ICharacter
     {
         public string getName()
         {
@@ -54,33 +54,65 @@ namespace rpg_decorator
             return "Meele";
         }
 
-        public string getStyle()
-        {
-            return "No style";
-        }
-
     }
 
-    public class Alchemist : ICharacter
+    public abstract class CharacterDecorator : ICharacter
     {
+        protected ICharacter _character;
 
-        private ICharacter character;
+        public CharacterDecorator (ICharacter character)
+        {
+            _character = character;
+        }
+
+        public string getName()
+        {
+            if (this._character != null)
+            {
+                return this._character.getName();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public string getSpecial1()
+        {
+            if (this._character != null)
+            {
+                return this._character.getSpecial1();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public string getSpecial2()
+        {
+            if (this._character != null)
+            {
+                return this._character.getSpecial2();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+    }
+    public class Alchemist : CharacterDecorator
+    {
         string imgname;
 
-        public Alchemist(ICharacter chara)
+        public Alchemist(ICharacter chara) :base (chara)
         {
-            this.character = chara;
             imgname = "Alchemist.png";
         }
 
         public string getImageName()
         {
             return imgname;
-        }
-
-        public virtual string getName()
-        {
-            return this.character.getName();
         }
 
         public virtual string getSpecial1()
@@ -97,17 +129,19 @@ namespace rpg_decorator
         {
             return "Heal";
         }
+
+        public string getSpecialAttack()
+        {
+            return "Very special attack";
+        }
     }
 
-    public class Gunslinger : ICharacter
+    public class Gunslinger : CharacterDecorator
     {
-
-        private ICharacter character;
         string imgname;
 
-        public Gunslinger(ICharacter chara)
+        public Gunslinger(ICharacter chara) : base(chara)
         {
-            this.character = chara;
             imgname = "Gunslinger.png";
         }
 
@@ -116,11 +150,6 @@ namespace rpg_decorator
             return imgname;
         }
 
-        public virtual string getName()
-        {
-            return this.character.getName();
-        }
-
         public virtual string getSpecial1()
         {
             return "Gun";
@@ -138,15 +167,12 @@ namespace rpg_decorator
 
     }
 
-    public class Mechanic : ICharacter
+    public class Mechanic : CharacterDecorator
     {
-
-        private ICharacter character;
         string imgname;
 
-        public Mechanic(ICharacter chara)
+        public Mechanic(ICharacter chara) : base(chara)
         {
-            this.character = chara;
             imgname = "Mechanic.png";
         }
 
@@ -155,11 +181,6 @@ namespace rpg_decorator
             return imgname;
         }
 
-        public virtual string getName()
-        {
-            return this.character.getName();
-        }
-
         public virtual string getSpecial1()
         {
             return "Gun";
@@ -177,15 +198,12 @@ namespace rpg_decorator
 
     }
 
-    public class Nekomancer : ICharacter
+    public class Nekomancer : CharacterDecorator
     {
-
-        private ICharacter character;
         string imgname;
 
-        public Nekomancer(ICharacter chara)
+        public Nekomancer(ICharacter chara) : base(chara)
         {
-            this.character = chara;
             imgname = "Nekomancer.png";
         }
 
@@ -194,11 +212,6 @@ namespace rpg_decorator
             return imgname;
         }
 
-        public virtual string getName()
-        {
-            return this.character.getName();
-        }
-
         public virtual string getSpecial1()
         {
             return "Staff";
@@ -215,26 +228,18 @@ namespace rpg_decorator
         }
     }
 
-    public class Masquerade : ICharacter
+    public class Masquerade : CharacterDecorator
     {
-
-        private ICharacter character;
         string imgname;
 
-        public Masquerade(ICharacter chara)
+        public Masquerade(ICharacter chara) : base(chara)
         {
-            this.character = chara;
             imgname = "Masquerade.png";
         }
 
         public string getImageName()
         {
             return imgname;
-        }
-
-        public virtual string getName()
-        {
-            return this.character.getName();
         }
 
         public virtual string getSpecial1()

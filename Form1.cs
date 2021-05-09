@@ -14,7 +14,7 @@ namespace rpg_decorator
     {
 
         ICharacter myCharacter;
-        string path;
+        readonly string path;
 
         public Form1()
         {
@@ -82,6 +82,7 @@ namespace rpg_decorator
         }
 
         public void setImage() { 
+
         }
 
         private void setClass()
